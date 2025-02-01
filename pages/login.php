@@ -5,7 +5,7 @@ $errorMessage = '';  // Inicializando a variável de erro
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
-    $password = $_POST['senha']; 
+    $password = $_POST['senha'];
 
     try {
         $stmt = $conn->prepare("SELECT * FROM usuario WHERE email = :email");
