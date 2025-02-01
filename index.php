@@ -1,4 +1,14 @@
-<html lang="pt-br">
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: pages/login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
