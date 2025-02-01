@@ -13,6 +13,7 @@
     font-style: normal;
     font-size: xx-large;
     padding: 0px 24px;
+    margin: 0px;
 }
 
 ul > li {
@@ -32,6 +33,18 @@ ul > li {
     font-family: 'Inter', serif;
     font-weight: 700;
     font-size: medium;
+}
+
+#left {
+    display: flex;
+    align-items: center;
+}
+
+#welcome {
+    font-family: "Raleway", serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
 }
 
 a {

@@ -1,10 +1,5 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: pages/login.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +24,18 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
     <div class="header">
-        <p class="logo">NetMotors</p>
+        <div id="left">
+            <p class="logo">NetMotors</p>
+            <p id="welcome">Bem-vindo<?php 
+                if (isset($_SESSION['user_id'])) {
+                    echo ", {$_SESSION['nome']}.";
+                } else {
+                    echo ".";
+                }
+                ?>
+            </p>
+        </div>
+        
         <ul>
             <li>
                 <button class='nav-element'>
@@ -54,14 +60,22 @@ if (!isset($_SESSION['user_id'])) {
             </li>
             <li>
                 <button class='nav-element'>
-                    <a href="pages/login.php">
+                    <a 
+                        <?php
+                        if (!isset($_SESSION['user_id'])) {
+                            echo "href='pages/login.php'";
+                        } else {
+                            echo "href='includes/logout.php'";
+                        }
+                        ?>
+                    >
                         <p class="text-element">
-                            <?php 
-                                if (is_null($_SESSION['user_id'])) {
-                                    echo "ENTRAR";
-                                } else {
-                                    echo "SAIR";
-                                }
+                            <?php
+                            if (!isset($_SESSION['user_id'])) {
+                                echo "ENTRAR";
+                            } else {
+                                echo "SAIR";
+                            }
                             ?>
                         </p>
                     </a>
