@@ -1,0 +1,43 @@
+.header {
+    background-color: #6F0E0E;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+}
+
+.logo {
+    color: white;
+    font-family: "Raleway", serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: xx-large;
+    padding: 0px 24px;
+}
+
+ul > li {
+    display: inline-block;
+    margin: 16px;
+}
+
+.nav-element {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    border-width: 0px;
+}
+
+.text-element {
+    color: #280000;
+    padding: 0px 16px;
+    font-family: 'Inter', serif;
+    font-weight: 700;
+    font-size: medium;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
