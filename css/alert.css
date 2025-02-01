@@ -1,0 +1,48 @@
+/* Alerta de erro que será exibido no topo */
+.alert {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fixa o alerta na tela */
+    top: 0; /* Fixa o alerta no topo */
+    left: 50%; /* Centraliza o alerta horizontalmente */
+    transform: translateX(-50%); /* Ajuste de centralização */
+    width: 80%; /* Largura do alerta */
+    max-width: 500px; /* Limita o tamanho máximo do alerta */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que o alerta sobreponha outros elementos */
+}
+
+/* Conteúdo do alerta */
+.alert-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid red; /* Borda vermelha */
+}
+
+.alert .error-message {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.alert button {
+    background-color: #6F0E0E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.alert button:hover {
+    background-color: #8B0000;
+}
+
+/* Estilo para a página para garantir que o conteúdo não sobreponha o alerta */
+body {
+    padding-top: 80px; /* Dá um espaço extra no topo para o alerta */
+}
