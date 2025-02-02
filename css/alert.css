@@ -32,8 +32,13 @@
 }
 
 .alert-button {
+    margin-top: 10px;
     border: none;
     color: white;
     cursor: pointer;
     font-size: 18px;
+}
+
+#close-alert {
+    margin-top: 10px;
 }

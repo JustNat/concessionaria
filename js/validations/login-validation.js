@@ -14,17 +14,25 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     if (!senha) {
         valid = false;
         errorMessage = "Por favor, insira sua senha.";
+    } else if (!validateSenha(senha)) {
+        showAlert("Senha muito curta!, insira uma senha maior", "error");
+        valid = false;
     }
 
     // Se algum erro ocorrer, exibe uma mensagem de erro e impede o envio do formulário
     if (!valid) {
         e.preventDefault();
         alert(errorMessage);
-    }
+    } 
 });
 
 // Função para validar o formato do e-mail
 function validateEmail(email) {
     var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return regex.test(email);
+}
+
+// Função para validar senha com pelo menos 6 caracteres
+function validateSenha(senha) {
+    return senha.length >= 6;
 }

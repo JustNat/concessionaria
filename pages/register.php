@@ -18,10 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         try {
-            // Preparar consulta para inserir os dados no banco
+            // Inserção dos dados no banco
             $stmt = $conn->prepare("INSERT INTO usuario (cpf, nome, email, tipo, senha) VALUES (:cpf, :nome, :email, :tipo, :senha)");
-
-            // Usando bindValue para evitar erro de referência
             $stmt->bindValue(':cpf', $cpf);
             $stmt->bindValue(':nome', $username);
             $stmt->bindValue(':email', $email);
@@ -30,12 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmt->execute();
 
-            // Redireciona após o sucesso
+            // Recupera o usuário recém-cadastrado
+            $stmt = $conn->prepare("SELECT * FROM usuario WHERE cpf = :cpf");
+            $stmt->bindValue(':cpf', $cpf);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Inicia a sessão e armazena as informações do usuário
+            session_start();
+            $_SESSION['user_id'] = $user['cpf'];
+            $_SESSION['nome'] = $user['nome'];
+
+            // Redireciona para a página inicial
             header("Location: ../index.php");
             exit();
         } catch (PDOException $e) {
-            // Atribui a mensagem de erro do banco à variável de erro
-            $errorMessage = "Erro ao cadastrar: " . $e->getMessage();
+            if ($e->getCode() == '23505') {
+                $errorMessage = "Este CPF já está cadastrado. Tente outro.";
+            } else {
+                $errorMessage = "Erro ao cadastrar: " . $e->getMessage();
+            }
         }
     }
 }
@@ -44,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
@@ -57,19 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="POST" action="register.php">
 
             <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf" required>
+            <input type="text" id="cpf" name="cpf" maxlength="11">
 
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
 
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+            <input type="password" id="senha" name="senha">
 
             <label for="confirm_password">Confirmar senha:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
+            <input type="password" id="confirm_password" name="confirm_password">
 
             <button type="submit">Cadastrar</button>
         </form>
@@ -80,17 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <!-- Inclusão do alert de erro -->
-    <?php if ($errorMessage): ?>
-        <div id="error-alert" class="alert">
-            <div class="alert-content">
-                <p class="error-message"><?php echo $errorMessage; ?></p>
-                <button onclick="closealert()">Fechar</button>
-            </div>
+    <!-- exibido se houver erro -->
+    <div id="alert-box" class="alert-box" style="display: none;" data-error-message="<?php echo htmlspecialchars($errorMessage); ?>">
+        <div class="alert-content">
+            <span id="alert-message"></span>
+            <button id="close-alert" onclick="closeAlert()">Fechar</button>
         </div>
-    <?php endif; ?>
+    </div>
 
     <script src="../js/alert.js"></script>
+    <script src="../js/validations/register-validation.js"></script>
 </body>
 
 </html>
