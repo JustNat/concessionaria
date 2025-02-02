@@ -3,6 +3,11 @@
 include '../includes/db.php';
 $errorMessage = '';
 
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['senha'];
