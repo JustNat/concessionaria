@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@ session_start();
     <title>NetMotors</title>
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/index_content.css">
+    <link rel="stylesheet" type="text/css" href="css/ad-buttons.css">
     <link rel="stylesheet" href="css/sideMenu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,14 +41,8 @@ session_start();
             </p>
         </div>
 
+
         <ul>
-            <li>
-                <button class='nav-element'>
-                    <a href="index.php">
-                        <p class="text-element">LANÇAMENTOS</p>
-                    </a>
-                </button>
-            </li>
             <li>
                 <button class='nav-element'>
                     <a href="">
@@ -56,7 +52,7 @@ session_start();
             </li>
             <li>
                 <button class='nav-element'>
-                    <a href="">
+                    <a href="./pages/register-ad.php">
                         <p class="text-element">VENDER</p>
                     </a>
                 </button>

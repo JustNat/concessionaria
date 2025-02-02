@@ -1,7 +1,12 @@
 <?php
 
 include '../includes/db.php';
-$errorMessage = '';  // Inicializando a variável de erro
+$errorMessage = '';
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -21,10 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: ../index.php");
             exit();
         } else {
-            $errorMessage = "Email ou senha incorretos.";  // Atribuindo erro de login
+            $errorMessage = "Email ou senha incorretos.";  // Preenche a mensagem de erro
         }
     } catch (PDOException $e) {
-        // Captura o erro de banco de dados e exibe a mensagem
         $errorMessage = "Erro de banco de dados: " . $e->getMessage();
     }
 }
@@ -41,34 +45,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <div class="login-container">
-        <h2>Bem-vindo de volta!</h2>
-        <form method="POST" action="login.php">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+    <div class='body-form-login'>
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+        <!-- Formulario de login -->
+        <div class="login-container">
+            <h2>Bem-vindo de volta!</h2>
+            <form id="login-form" method="POST" action="login.php">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
 
-            <button type="submit">Entrar</button>
-        </form>
-        <div class="register-link">
-            <p>Ainda não tem uma conta?</p>
-            <a href="register.php">Cadastre-se aqui</a>
-        </div>
-    </div>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha">
 
-    <!-- Modal de erro, exibido se houver erro -->
-    <?php if ($errorMessage): ?>
-        <div id="error-alert" class="alert">
-            <div class="alert-content">
-                <p class="error-message"><?php echo $errorMessage; ?></p>
-                <button onclick="closealert()">Fechar</button>
+                <button type="submit">Entrar</button>
+            </form>
+            <div class="register-link">
+                <p>Ainda não tem uma conta?</p>
+                <a href="register.php">Cadastre-se aqui</a>
             </div>
         </div>
-    <?php endif; ?>
 
-    <script src="../js/alert.js"></script> <!-- Script da popup -->
+        <!-- exibido se houver erro -->
+        <div id="alert-box" class="alert-box" style="display: none;" data-error-message="<?php echo htmlspecialchars($errorMessage); ?>">
+            <div class="alert-content">
+                <span id="alert-message"></span>
+                <button id="close-alert" onclick="closeAlert()">Fechar</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/validations/login-validation.js"></script>
+    <script src="../js/alert.js"></script>
 </body>
 
 </html>
