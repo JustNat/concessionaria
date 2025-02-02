@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetMotors</title>
     <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" href="css/sideMenu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -23,6 +24,7 @@ session_start();
 </head>
 
 <body>
+    <!-- header -->
     <div class="header">
         <div id="left">
             <p class="logo">NetMotors</p>
@@ -83,6 +85,11 @@ session_start();
             </li>
         </ul>
     </div>
+        <!-- Side Menu -->
+    <div>
+        <?php include('./components/side_menu.php'); ?>
+    </div>
+    <script src='js/sideMenu.js' ></script>
 </body>
 
 </html>
