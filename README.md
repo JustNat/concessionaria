@@ -1,6 +1,6 @@
 # :car: NetMotors - A concessionária do povo.
 
-## :gear: Configurações inciais
+## :gear: Configurações iniciais
 
 ### Modelo do arquivo .env:
 DB_HOST=localhost
