@@ -1,0 +1,65 @@
+#main-content {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 390px;
+}
+
+.container {
+    display: flex;
+    margin: 30px;
+    border-radius: 25px;
+    border-width: 0px;
+}
+
+.container p {
+    font-family: "Raleway", serif;
+    margin: 0px;
+}
+
+.ad {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    color: white;
+}
+
+.ad p {
+    padding-left: 15px;
+}
+
+.ad-img {
+    padding: 10px 10px;
+}
+
+.car-model {
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.car-brand {
+    color: #B1B1B1;
+    font-size: 14px;
+    padding: 5px 15px;
+    font-weight: 700;
+}
+
+.car-year-km{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.car-year-km p {
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+.price {
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 10px 15px;
+}

@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetMotors</title>
     <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/index_content.css">
     <link rel="stylesheet" href="css/sideMenu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,20 +29,20 @@ session_start();
     <div class="header">
         <div id="left">
             <p class="logo">NetMotors</p>
-            <p id="welcome">Bem-vindo<?php 
-                if (isset($_SESSION['user_id'])) {
-                    echo ", {$_SESSION['nome']}.";
-                } else {
-                    echo ".";
-                }
-                ?>
+            <p id="welcome">Bem-vindo<?php
+            if (isset($_SESSION['user_id'])) {
+                echo ", {$_SESSION['nome']}.";
+            } else {
+                echo ".";
+            }
+            ?>
             </p>
         </div>
-        
+
         <ul>
             <li>
                 <button class='nav-element'>
-                    <a href="">
+                    <a href="index.php">
                         <p class="text-element">LANÇAMENTOS</p>
                     </a>
                 </button>
@@ -49,7 +50,7 @@ session_start();
             <li>
                 <button class='nav-element'>
                     <a href="">
-                        <p class="text-element">COMPRAR</p>
+                        <p class="text-element">FAVORITOS</p>
                     </a>
                 </button>
             </li>
@@ -62,15 +63,13 @@ session_start();
             </li>
             <li>
                 <button class='nav-element'>
-                    <a 
-                        <?php
-                        if (!isset($_SESSION['user_id'])) {
-                            echo "href='pages/login.php'";
-                        } else {
-                            echo "href='includes/logout.php'";
-                        }
-                        ?>
-                    >
+                    <a <?php
+                    if (!isset($_SESSION['user_id'])) {
+                        echo "href='pages/login.php'";
+                    } else {
+                        echo "href='includes/logout.php'";
+                    }
+                    ?>>
                         <p class="text-element">
                             <?php
                             if (!isset($_SESSION['user_id'])) {
@@ -85,11 +84,14 @@ session_start();
             </li>
         </ul>
     </div>
+    <div style="display: flex;">
         <!-- Side Menu -->
-    <div>
         <?php include('./components/side_menu.php'); ?>
+
+        <!-- Main Content -->
+        <?php include('./components/index_content.php'); ?>
     </div>
-    <script src='js/sideMenu.js' ></script>
+    <script src='js/sideMenu.js'></script>
 </body>
 
 </html>
