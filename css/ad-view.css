@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#desc-price {
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#desc-price p {
+    font-family: "Raleway", Arial, serif;
+    color: black;
+    font-weight: 800;
+    font-size: larger;
+}
+
+#model-info {
+    width: 900px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: thin solid gray;
+}
+
+#model-info p {
+    font-family: Raleway, Arial, serif;
+    color: black;
+    font-weight: 600;
+    font-size: large;
+}
+
+#vehicle-info {
+    width: 900px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#vehicle-info p {
+    font-family: Raleway, Arial, serif;
+    color: black;
+    font-weight: 600;
+    font-size: large;
+}
+
+#show-interest {
+    width: 50%;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border-width: 0px;
+}
+
+#show-interest p {
+    color: #280000;
+    font-family: Raleway, Arial, serif;
+    font-weight: 800;
+    font-size: larger;
+}
