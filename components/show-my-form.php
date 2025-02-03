@@ -1,3 +1,0 @@
-<div>
-    meus anuncios
-</div>

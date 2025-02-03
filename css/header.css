@@ -1,10 +1,15 @@
 .header {
     background-color: #6F0E0E;
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
     width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
 }
+
 
 .logo {
     color: white;
@@ -18,7 +23,7 @@
 
 ul > li {
     display: inline-block;
-    margin: 16px;
+    margin-right: 50px;
 }
 
 .nav-element {

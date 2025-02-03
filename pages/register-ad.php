@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
         if ($view === 'register') {
             include '../components/register-ad-form.php';
         } elseif ($view === 'my-ads') {
-            include '../components/show-my-form.php';
+            include('../components/user-content.php');
         }
         ?>
     </div>

@@ -40,13 +40,11 @@ session_start();
             ?>
             </p>
         </div>
-
-
         <ul>
             <li>
                 <button class='nav-element'>
                     <a href="">
-                        <p class="text-element">FAVORITOS</p>
+                        <p class="text-element">LANÇAMENTOS</p>
                     </a>
                 </button>
             </li>
@@ -80,8 +78,8 @@ session_start();
             </li>
         </ul>
     </div>
-    <div style="display: flex;">
         <!-- Side Menu -->
+    <div>
         <?php include('./components/side_menu.php'); ?>
 
         <!-- Main Content -->
