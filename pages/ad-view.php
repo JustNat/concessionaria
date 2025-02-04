@@ -9,7 +9,7 @@ if (isset($_GET['ad_id'])) {
     header('Location: ../index.php');
 }
 
-include '/var/www/html/concessionaria/includes/db.php';
+include '../includes/db.php';
 try {
     $stmt = $conn->prepare("SELECT anuncio.* , veiculo.* , modelo.* FROM anuncio INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id INNER JOIN modelo ON veiculo.id_modelo = modelo.nome WHERE id_veiculo = :id");
     $stmt->bindParam("id", $productId, PDO::PARAM_INT);
@@ -30,6 +30,7 @@ try {
     <title><?php echo $ad[0]['descricao'] ?></title>
     <link rel="stylesheet" href="../css/ad-view.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/ad-buttons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 

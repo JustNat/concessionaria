@@ -1,6 +1,16 @@
 <?php
 
 session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /concessionaria/pages/login.php");
+    exit();
+}
+
+if (isset($_SESSION['tipo']) && !$_SESSION['tipo'] == 'adm') {
+    header("Location: /concessionaria/index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +20,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetMotors</title>
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/index_content.css">
-    <link rel="stylesheet" type="text/css" href="css/ad-buttons.css">
-    <link rel="stylesheet" href="css/sideMenu.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/index_content.css">
+    <link rel="stylesheet" type="text/css" href="../css/ad-buttons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -27,16 +36,14 @@ session_start();
 </head>
 
 <body>
-    <!-- Header -->
-    <?php include('./components/header.php'); ?>
-        <!-- Side Menu -->
     <div>
-        <?php include('./components/side_menu.php'); ?>
-
-        <!-- Main Content -->
-        <?php include('./components/index_content.php'); ?>
+        <!-- Header -->
+        <?php include('../components/header.php'); ?>
     </div>
-    <script src='js/sideMenu.js'></script>
+    <!-- Admin-content -->
+    <div>
+        <?php include('../components/admin-content.php'); ?>
+    </div>
 </body>
 
 </html>

@@ -6,28 +6,13 @@ error_reporting(E_ALL);
 $errorMessage = '';
 include 'E:\xampp\htdocs\concessionaria\includes\db.php';
 try {
-    $stmt = $conn->prepare("SELECT 
-        anuncio.id_veiculo, 
-        anuncio.foto, 
-        anuncio.preco, 
-        veiculo.km, 
-        modelo.nome,
-        modelo.ano, 
-        modelo.id_marca, 
-        cidade.nome AS cidade_nome
-    FROM 
-        anuncio
-    INNER JOIN 
-        veiculo ON anuncio.id_veiculo = veiculo.id
-    INNER JOIN 
-        modelo ON veiculo.id_modelo = modelo.nome
-    INNER JOIN 
-        cidade ON anuncio.id_cidade = cidade.id
-    WHERE 
-        aprovado = TRUE
-");
-$stmt->execute();
-    
+    $stmt = $conn->prepare("SELECT anuncio.id_veiculo, anuncio.foto, anuncio.preco, veiculo.km, modelo.nome, modelo.ano, modelo.id_marca, cidade.nome AS cidade_nome
+    FROM anuncio 
+    INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id 
+    INNER JOIN modelo ON veiculo.id_modelo = modelo.nome 
+    INNER JOIN cidade ON anuncio.id_cidade = cidade.id 
+    WHERE aprovado = FALSE");
+    $stmt->execute();
 
     $ads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -44,7 +29,7 @@ $stmt->execute();
         echo "<p>$errorMessage</p>";
     } else {
         foreach ($ads as $ad) {
-            include('inner_components/ad.php');
+            include('inner_components/ad.admin.php');
         }
     }
     ?>

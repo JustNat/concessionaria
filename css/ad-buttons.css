@@ -5,6 +5,15 @@
     margin: 20px 0;
 }
 
+.admin-content {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .nav-element {
     background: linear-gradient(135deg, #ff7e5f, #feb47b);
     border: none;
