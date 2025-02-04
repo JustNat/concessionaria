@@ -1,66 +1,126 @@
 #main-content {
     display: flex;
     flex-grow: 1;
-    margin-left: 390px;
+    margin-left: 400px;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
 }
 
-.container {
+.ad-container {
     display: flex;
-    margin: 30px;
-    border-radius: 25px;
-    border-width: 0px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 320px;
+    width: 100%;
+    overflow: hidden;
 }
 
-.container p {
+.ad-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ad-container p {
     font-family: "Raleway", serif;
-    margin: 0px;
+    margin: 0;
 }
 
+/* Estilos para o bloco do anúncio */
 .ad {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    color: white;
-}
-
-.ad p {
-    padding-left: 15px;
-}
-
-.ad-img {
-    padding: 10px 10px;
-}
-
-.car-model {
-    color: black;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.car-brand {
-    color: #B1B1B1;
-    font-size: 14px;
-    padding: 5px 15px;
-    font-weight: 700;
-}
-
-.car-year-km{
-    display: flex;
-    justify-content: space-between;
+    align-items: flex-start;
+    color: #333;
     width: 100%;
 }
 
-.car-year-km p {
-    color: black;
-    font-weight: 700;
-    font-size: 16px;
-    padding-right: 10px;
+.ad-img {
+    width: 100%;
+    min-width: 180px;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.price {
-    color: black;
+.ad-img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo do nome do carro */
+.car-model {
+    color: #333;
+    font-size: 18px;
     font-weight: 700;
-    font-size: 20px;
-    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+/* Estilo da marca */
+.car-brand {
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Estilo para o ano e quilometragem */
+.car-year-km {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.car-year-km p {
+    color: #333;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Estilo para o preço */
+.price {
+    color: #e74c3c;
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 15px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Estilo para o botão de aprovação */
+.approve-button {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Quando o botão é hover (passa o mouse em cima) */
+.approve-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Quando o botão é pressionado (clique) */
+.approve-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
