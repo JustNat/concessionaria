@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $errorMessage = '';
 include '/var/www/html/concessionaria/includes/db.php';
 try {
-    $stmt = $conn->prepare("SELECT anuncio.id_veiculo, anuncio.foto, anuncio.preco, veiculo.km, modelo.nome, modelo.ano, modelo.id_marca FROM anuncio INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id INNER JOIN modelo ON veiculo.id_modelo = modelo.nome WHERE aprovado = TRUE");
+    $stmt = $conn->prepare("SELECT anuncio.id, anuncio.id_modelo, anuncio.foto, anuncio.preco, anuncio.km, modelo.nome, modelo.ano, modelo.id_marca FROM anuncio INNER JOIN modelo ON anuncio.id_modelo = modelo.id WHERE aprovado = TRUE");
     $stmt->execute();
 
     $ads = $stmt->fetchAll(PDO::FETCH_ASSOC);

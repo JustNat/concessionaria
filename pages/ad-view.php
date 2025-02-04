@@ -4,18 +4,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_GET['ad_id'])) {
-    $productId = $_GET['ad_id'];
+    $adId = $_GET['ad_id'];
 } else {
     header('Location: ../index.php');
 }
 
 include '/var/www/html/concessionaria/includes/db.php';
 try {
-    $stmt = $conn->prepare("SELECT anuncio.* , veiculo.* , modelo.* FROM anuncio INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id INNER JOIN modelo ON veiculo.id_modelo = modelo.nome WHERE id_veiculo = :id");
-    $stmt->bindParam("id", $productId, PDO::PARAM_INT);
+    $stmt = $conn->prepare("SELECT anuncio.* , modelo.* FROM anuncio INNER JOIN modelo ON anuncio.id_modelo = modelo.id WHERE anuncio.id = :id");
+    $stmt->bindParam("id", $adId, PDO::PARAM_INT);
     $stmt->execute();
 
     $ad = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (empty($ad)) {
+        header("Location: ../index.php");
+    }
 } catch (PDOException $e) {
     $errorMessage = "Ocorreu um erro interno." . $e->getMessage();
 }
@@ -71,7 +74,7 @@ try {
                     echo "Diesel";
                     break;
                 case "a":
-                    echo "Indefinido";
+                    echo "Álcool";
                     break;
             }
             ?></p>
@@ -127,7 +130,14 @@ try {
         </div>
 
         <button id="show-interest">
-            <a href="" style="text-decoration: none;">
+            <a href=<?php 
+                if (!isset($_SESSION['user_id'])) {
+                    echo 'login.php';
+                } else {
+                    $cpf = $_SESSION['user_id'];
+                    echo "../includes/show-interest.php?ad_id=" . $adId . "&cpf=" . $cpf;
+                }
+            ?>" style="text-decoration: none;">
                 <p id="button-desc">Mostrar interesse</p>
             </a>
         </button>

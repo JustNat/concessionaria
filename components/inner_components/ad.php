@@ -1,5 +1,5 @@
 <button class='container'>
-    <a href="pages/ad-view.php?ad_id=<?php echo $ad['id_veiculo'] ?>">
+    <a href="pages/ad-view.php?ad_id=<?php echo $ad['id'] ?>">
     <div class='ad'>
         <img src="<?php echo $ad['foto']?>" class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
         <p class='car-model'><?php echo htmlspecialchars($ad['nome']) ?></p>
