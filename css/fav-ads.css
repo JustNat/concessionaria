@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    color: black;
+    margin-left: 50px;
+    font-family: Raleway, Arial, sans-serif;
+    font-weight: 800;
+    font-size: xx-large;
+}
+
+#no-ads-p {
+    color: black;
+    margin-left: 60px;
+    font-family: Raleway, Arial, sans-serif;
+    font-weight: 700;
+    font-size: x-large;
+}
+
+#fav-ads {
+    display: flex;
+    margin: 0px 30px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
