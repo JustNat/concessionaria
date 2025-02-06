@@ -218,24 +218,47 @@ try {
             </p>
         </div>
 
-        <button id="show-interest">
-            <?php
-            if (!isset($_SESSION['user_id'])) {
-                echo "<a href='login.php'><p id='button-desc'>Fazer login</p></a>";
-            } else if ($_SESSION['user_id'] == $ad[0]['id_usuario']) {
-                echo "<a href='../includes/delete-ad.php?ad_id=$adId'><p id='button-desc'>Excluir anúncio</p></a>";
-            } else {
-                if (!empty($isInterested)) {
-                    echo "<p id='button-desc'>Anúncio já marcado para interesse.</p>";
-                } else {
-                    $cpf = $_SESSION['user_id'];
-                    echo "<a href='../includes/show-interest.php?ad_id=" . $ad[0]['id_anuncio'] . "&cpf=$cpf'><p id='button-desc'>Mostrar interesse</p></a>";
-                }
-            }
-            ?>
-        </button>
+        <?php
 
-        <p style="font-family: 'Raleway'; font-size: x-large; color: black; margin-top: 20px; margin-bottom: 5px;">Usuários que demonstraram interesse</p>
+        if ($_SESSION['user_id'] == $ad[0]['id_usuario']) {
+            echo "
+                <div class='actions-container'>
+                <button class='actions'>
+                    <a href='update-ad.php?ad_id=$adId'><p id='button-desc'>Editar anúncio</p></a>
+                </button>
+                <button class='actions'>
+                    <a href='delete-ad.php?ad_id=$adId'><p id='button-desc'>Excluir anúncio</p></a>
+                </button>
+                </div>
+                "
+            ;
+        } else if (!isset($_SESSION['user_id'])) {
+            echo "
+                <button class='actions'>
+                    <a href='login.php'><p id='button-desc'>Fazer login</p></a>
+                </button>
+                ";
+        } else {
+            if (!empty($isInterested)) {
+                echo "
+                <button class='actions'>
+                <p id='button-desc'>Anúncio já marcado para interesse.</p>
+                </button>
+                ";
+            } else {
+                $cpf = $_SESSION['user_id'];
+                echo "
+                <button class='actions'>
+                <a href='../includes/show-interest.php?ad_id=" . $ad[0]['id_anuncio'] . "&cpf=$cpf'><p id='button-desc'>Mostrar interesse</p></a>
+                </button>
+                ";
+            }
+        }
+
+        ?>
+
+        <p style="font-family: 'Raleway'; font-size: x-large; color: black; margin-top: 20px; margin-bottom: 5px;">
+            Usuários que demonstraram interesse</p>
         <div id="interested-container">
             <?php
             if ($_SESSION['user_id'] == $ad[0]['id_usuario']) {

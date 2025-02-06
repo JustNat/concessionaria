@@ -50,16 +50,24 @@ body {
     font-size: large;
 }
 
-#show-interest {
+.actions {
     width: 50%;
     border-radius: 25px;
     background: linear-gradient(135deg, #ff7e5f, #feb47b);
     border-width: 0px;
 }
 
-#show-interest p {
+.actions p {
     color: #280000;
     font-family: Raleway, Arial, serif;
     font-weight: 800;
     font-size: larger;
+}
+
+.actions-container {
+    width: 900px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
 }
