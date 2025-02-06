@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const senha = document.getElementById("senha").value;
             const confirmPassword = document.getElementById("confirm_password").value;
             let valid = true;
-
-            // Limpa os erros anteriores
+            
             clearErrors();
 
-            // Validações
             if (!cpf || !nome || !email || !senha || !confirmPassword) {
                 showAlert("Todos os campos são obrigatórios.", "error");
                 valid = false;

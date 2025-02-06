@@ -1,7 +1,7 @@
-/* styles.css para Login e Cadastro */
+/* styles.css para Login */
 
 * {
-    box-sizing: border-box; /* Inclui padding e borda na largura e altura dos elementos */
+    box-sizing: border-box;
 }
 
 body {
@@ -21,7 +21,7 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-    text-align: start;  /* Alinhamento à esquerda para os campos */
+    text-align: start;
 }
 
 h2 {
@@ -38,7 +38,7 @@ label {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;  /* Garantir que os campos ocupem 100% da largura disponível */
+    width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 2px solid #6F0E0E;
@@ -60,7 +60,7 @@ button {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    width: 100%;  /* O botão ocupará toda a largura do formulário */
+    width: 100%;
 }
 
 button:hover {

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) && isset($_GET['ad_id'])) {
     exit();
 }
 
-include '/var/www/html/concessionaria/includes/db.php';
+include '/concessionaria/includes/db.php';
 try {
     $stmt = $conn->prepare("INSERT INTO interesse_compra (id_anuncio, cpf_interessado) VALUES (:id, :cpf)");
     $stmt->bindParam("id", $_GET['ad_id'], PDO::PARAM_INT);

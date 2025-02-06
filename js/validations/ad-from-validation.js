@@ -1,6 +1,5 @@
 function validateForm() {
     console.log('chamou as validações')
-    // Captura todos os campos necessários
     const idCidade = document.getElementById('id_cidade').value;
     const placa = document.getElementById('placa').value;
     const km = document.getElementById('km').value;
@@ -10,7 +9,6 @@ function validateForm() {
     const descricao = document.getElementById('descricao').value;
     const idModelo = document.getElementById('modelo').value;
 
-    // Verifica se algum campo obrigatório está vazio
     if (idCidade === "" || isNaN(idCidade)) {
         alert("Por favor, selecione uma cidade válida.");
         return false;
@@ -51,13 +49,11 @@ function validateForm() {
         return false;
     }
 
-    // Se todos os campos estiverem preenchidos corretamente, permite o envio do formulário
     return true;
 }
 
-// Adiciona o evento de validação ao formulário
 document.querySelector("form").onsubmit = function(event) {
     if (!validateForm()) {
-        event.preventDefault(); // Previne o envio do formulário se a validação falhar
+        event.preventDefault();
     }
 };

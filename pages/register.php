@@ -1,24 +1,22 @@
 <?php
 
 include '../includes/db.php';
-$errorMessage = ''; // Inicializa a variável de erro
+$errorMessage = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpf = $_POST['cpf'];
     $username = $_POST['nome'];
     $email = $_POST['email'];
     $password = $_POST['senha'];
-    $confirmPassword = $_POST['confirm_password']; // Novo campo
+    $confirmPassword = $_POST['confirm_password'];
 
     // Verifica se as senhas coincidem
     if ($password !== $confirmPassword) {
-        $errorMessage = "As senhas não coincidem. Tente novamente."; // Mensagem de erro
+        $errorMessage = "As senhas não coincidem. Tente novamente.";
     } else {
-        // Criptografa a senha
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         try {
-            // Inserção dos dados no banco
             $stmt = $conn->prepare("INSERT INTO usuario (cpf, nome, email, tipo, senha) VALUES (:cpf, :nome, :email, :tipo, :senha)");
             $stmt->bindValue(':cpf', $cpf);
             $stmt->bindValue(':nome', $username);
@@ -28,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmt->execute();
 
-            // Recupera o usuário recém-cadastrado
             $stmt = $conn->prepare("SELECT * FROM usuario WHERE cpf = :cpf");
             $stmt->bindValue(':cpf', $cpf);
             $stmt->execute();
@@ -38,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
             $_SESSION['user_id'] = $user['cpf'];
             $_SESSION['nome'] = $user['nome'];
-
-            // Redireciona para a página inicial
+            $_SESSION['tipo'] = $user['tipo'];
             header("Location: ../index.php");
             exit();
         } catch (PDOException $e) {

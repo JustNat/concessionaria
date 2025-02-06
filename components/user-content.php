@@ -8,10 +8,7 @@ $userId = $_SESSION['user_id'];
 
 try {
     $stmt = $conn->prepare("SELECT anuncio.foto, anuncio.preco, veiculo.km, modelo.nome, modelo.ano, modelo.id_marca
-                            FROM anuncio 
-                            INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id 
-                            INNER JOIN modelo ON veiculo.id_modelo = modelo.nome
-                            WHERE anuncio.id_usuario = :userId");
+                            FROM anuncio WHERE anuncio.id_usuario = :userId");
     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
     $stmt->execute();
 
@@ -30,7 +27,25 @@ try {
         echo "<p>$errorMessage</p>";
     } else {
         foreach ($ads as $ad) {
-            include('inner_components/ad.php');
+            echo "<button class='ad-container'
+                data-preco='" . htmlspecialchars($ad['preco']) . "'
+                data-km='" . htmlspecialchars($ad['km']) . "'
+                data-combustivel='" . htmlspecialchars($ad['combustivel']) . "'
+                data-cambio='" . htmlspecialchars($ad['cambio']) . "'
+                data-gnv='" . htmlspecialchars($ad['gnv']) . "'>
+                    <div class='ad'>
+                        <a href='pages/ad-view.php?ad_id=" . urlencode($ad['id']) . "'>
+                            <img src='" . htmlentities($ad['foto']) . "' class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
+                            <p class='car-model'>" . htmlspecialchars($ad['nome']) . "</p>
+                            <p class='car-brand'>" . htmlspecialchars($ad['id_marca']) . "</p>
+                            <div class='car-year-km'>
+                                <p>" . htmlspecialchars($ad['ano']) . "</p>
+                                <p>" . number_format($ad['km'], 0, ',', '.') . "</p>
+                            </div>
+                            <p class='price'>" . number_format($ad['preco'], 2, ',', '.') . "</p>
+                        </a>
+                    </div>
+                </button>";
         }
     }
     ?>

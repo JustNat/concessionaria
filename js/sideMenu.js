@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Arquivo JS ok'); // Tirar console.log
 
     var kmRange = document.getElementById('km-range-bar');
     var kmLabel = document.getElementById('km-label');
@@ -11,22 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     kmLabel.textContent = kmRange.value;
 
-
-    //  Para alterar o ano: --------------------------------------------------------------------------------------
-
-    var yearRange = document.getElementById('year-range');
-    var yearValue = document.getElementById('year-value');
-
-    yearRange.addEventListener('input', function () {
-        yearValue.textContent = this.value;
-    });
-
     //  Para alterar o preço: --------------------------------------------------------------------------------------
 
     function formatPrice(value) {
         return value.replace(/[^\d,]/g, '').replace(',', '.');
     }
-    
+
     document.getElementById('max-price-search').addEventListener('focus', function () {
         if (this.value === "R$") {
             this.value = "";

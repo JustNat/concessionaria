@@ -32,7 +32,7 @@
     margin: 0;
 }
 
-/* Estilos para o bloco do anúncio */
+/* Estilos bloco do anúncio */
 .ad {
     display: flex;
     flex-direction: column;
@@ -56,7 +56,6 @@
     transform: scale(1.05);
 }
 
-/* Estilo do nome do carro */
 .car-model {
     color: #333;
     font-size: 18px;
@@ -64,14 +63,12 @@
     margin-bottom: 10px;
 }
 
-/* Estilo da marca */
 .car-brand {
     color: #777;
     font-size: 14px;
     font-weight: 500;
 }
 
-/* Estilo para o ano e quilometragem */
 .car-year-km {
     display: flex;
     justify-content: space-between;
@@ -85,7 +82,6 @@
     font-size: 16px;
 }
 
-/* Estilo para o preço */
 .price {
     color: #e74c3c;
     font-weight: 700;
@@ -95,7 +91,7 @@
     text-align: center;
 }
 
-/* Estilo para o botão de aprovação */
+/* Estilo para botão aprovação */
 .approve-button {
     background-color: #28a745;
     color: white;
@@ -112,14 +108,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Quando o botão é hover (passa o mouse em cima) */
 .approve-button:hover {
     background-color: #218838;
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Quando o botão é pressionado (clique) */
 .approve-button:active {
     transform: scale(0.98);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
