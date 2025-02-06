@@ -4,13 +4,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $errorMessage = '';
-include 'E:\xampp\htdocs\concessionaria\includes\db.php';
+include '../includes/db.php';
 try {
-    $stmt = $conn->prepare("SELECT anuncio.id_veiculo, anuncio.foto, anuncio.preco, veiculo.km, modelo.nome, modelo.ano, modelo.id_marca, cidade.nome AS cidade_nome
+    $stmt = $conn->prepare("SELECT anuncio.*, modelo.nome, modelo.ano, modelo.id_marca, cidade.nome AS cidade_nome
     FROM anuncio 
-    INNER JOIN veiculo ON anuncio.id_veiculo = veiculo.id 
-    INNER JOIN modelo ON veiculo.id_modelo = modelo.nome 
-    INNER JOIN cidade ON anuncio.id_cidade = cidade.id 
+    INNER JOIN modelo ON anuncio.id_modelo = modelo.id 
+    INNER JOIN cidade ON anuncio.id_cidade = cidade.id
     WHERE aprovado = FALSE");
     $stmt->execute();
 

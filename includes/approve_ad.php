@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ad_id'])) {
     }
 
     try {
-        $sql = "UPDATE anuncio SET aprovado = TRUE WHERE id_veiculo = :ad_id";
+        $sql = "UPDATE anuncio SET aprovado = TRUE WHERE id = :ad_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':ad_id', $ad_id, PDO::PARAM_INT);
 

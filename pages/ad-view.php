@@ -133,17 +133,24 @@ try {
         </div>
 
         <button id="show-interest">
-            <a href=<?php 
+            <?php 
                 if (!isset($_SESSION['user_id'])) {
-                    echo 'login.php';
-                } else {
+                    echo "<a href='login.php'><p id='button-desc'>Fazer login</p></a>";
+                } else if ($_SESSION['user_id'] == $ad[0]['id_usuario']) {
+                    echo "<a href='../includes/delete-ad.php?ad_id=$adId'><p id='button-desc'>Excluir anúncio</p></a>";
+                } 
+                else {
                     $cpf = $_SESSION['user_id'];
-                    echo "../includes/show-interest.php?ad_id=" . $adId . "&cpf=" . $cpf;
+                    echo "<a href='../includes/show-interest.php?ad_id=$adId&cpf=$cpf'><p id='button-desc'>Mostrar interesse</p></a>";
                 }
-            ?>" style="text-decoration: none;">
-                <p id="button-desc">Mostrar interesse</p>
-            </a>
+            ?>
         </button>
+
+        <div id="interested-container">
+            <div>
+
+            </div>
+        </div>
 
     </div>
 

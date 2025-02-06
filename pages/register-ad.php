@@ -38,7 +38,7 @@ function getMarcas($conn)
 // Função para buscar modelos por marca
 function getModelos($conn, $id_marca)
 {
-    $sql = "SELECT nome FROM modelo WHERE id_marca = :id_marca";
+    $sql = "SELECT id, nome FROM modelo WHERE id_marca = :id_marca";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id_marca', $id_marca, PDO::PARAM_INT);
     $stmt->execute();
@@ -75,16 +75,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
         $novo = ($km == 0) ? 1 : 0;
 
         // Inserir veículo
-        $sql_veiculo = "INSERT INTO veiculo (id_modelo, placa, km, gnv, cor, novo) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt_veiculo = $conn->prepare($sql_veiculo);
-        $stmt_veiculo->execute([$id_modelo, $placa, $km, $gnv, $cor, $novo]);
-        $id_veiculo = $conn->lastInsertId();
+        // $sql_veiculo = "INSERT INTO veiculo (id_modelo, placa, km, gnv, cor, novo) VALUES (?, ?, ?, ?, ?, ?)";
+        // $stmt_veiculo = $conn->prepare($sql_veiculo);
+        // $stmt_veiculo->execute([$id_modelo, $placa, $km, $gnv, $cor, $novo]);
+        // $id_veiculo = $conn->lastInsertId();
 
         // Inserir anúncio
-        $sql_anuncio = "INSERT INTO anuncio (id_veiculo, id_usuario, id_cidade, descricao, telefone, foto, preco, dt_criacao, aprovado) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), FALSE)";
+        $sql_anuncio = "INSERT INTO anuncio (id_usuario, id_cidade, descricao, telefone, foto, preco, aprovado, placa, km, gnv, cor, novo, id_modelo)
+                        VALUES (?, ?, ?, ?, ?, ?, FALSE, ?, ?, ?, ?, ?, ?)";
         $stmt_anuncio = $conn->prepare($sql_anuncio);
-        $stmt_anuncio->execute([$id_veiculo, $id_usuario, $id_cidade, $descricao, $telefone, $foto, $preco]);
+        $stmt_anuncio->execute([$id_usuario, $id_cidade, $descricao, $telefone, $foto, $preco, $placa, $km, $gnv, $cor, $novo, $id_modelo]);
 
         $conn->commit();
         $response = ["success" => true, "message" => "Anúncio cadastrado com sucesso!"];
@@ -109,8 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     <link rel="stylesheet" type="text/css" href="../css/ad-buttons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -158,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     <div>
         <?php
         $view = isset($_GET['view']) ? $_GET['view'] : 'register'; // Padrão: 'register'
-
+        
         if ($view === 'register') {
             include '../components/register-ad-form.php';
         } elseif ($view === 'my-ads') {
@@ -167,7 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
         ?>
     </div>
 
-    <div id="alert-box" class="alert-box" style="display: none;" data-error-message="<?php echo htmlspecialchars($errorMessage); ?>">
+    <div id="alert-box" class="alert-box" style="display: none;"
+        data-error-message="<?php echo htmlspecialchars($errorMessage); ?>">
         <div class="alert-content">
             <span id="alert-message"></span>
             <button id="close-alert" onclick="closeAlert()">Fechar</button>
@@ -178,16 +182,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     <!-- Impede o envio do form e tambem reseta o form -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("cadastro-form").addEventListener("submit", function(event) {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("cadastro-form").addEventListener("submit", function (event) {
                 event.preventDefault();
 
                 let formData = new FormData(this);
 
                 fetch("", {
-                        method: "POST",
-                        body: formData
-                    })
+                    method: "POST",
+                    body: formData
+                })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {

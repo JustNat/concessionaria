@@ -1,6 +1,6 @@
 <div class='admin-container'>
     <button class='ad-container'>
-        <a href="pages/ad-view.php?ad_id=<?php echo $ad['id_veiculo'] ?>">
+        <a href="pages/ad-view.php?ad_id=<?php echo $ad['id_modelo'] ?>">
             <div class='ad'>
                 <img src="<?php echo $ad['foto'] ?>" class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
                 <p class='car-model'><?php echo htmlspecialchars($ad['nome']) ?></p>
@@ -16,7 +16,7 @@
     </button>
 
     <form action="/concessionaria/includes/approve_ad.php" method="POST">
-        <input type="hidden" name="ad_id" value="<?php echo $ad['id_veiculo']; ?>">
+        <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>">
         <button type="submit" class="approve-button">Aprovar Anúncio</button>
     </form>
 </div>
