@@ -27,16 +27,13 @@ session_start();
 </head>
 
 <body>
-    <!-- Header -->
-    <?php include('./components/header.php'); ?>
-        <!-- Side Menu -->
-    <div>
-        <?php include('./components/side_menu.php'); ?>
 
-        <!-- Main Content -->
-        <?php include('./components/index_content.php'); ?>
-    </div>
+    <?php include('./components/header.php'); ?>
+    <?php include('./components/side_menu.php'); ?>
+    <?php include('./components/index_content.php'); ?>
+
     <script src='js/sideMenu.js'></script>
+
 </body>
 
 </html>

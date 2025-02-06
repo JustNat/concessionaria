@@ -16,7 +16,6 @@ form {
     box-sizing: border-box;
 }
 
-/* Título principal */
 .title-sellscars {
     display: flex;
     justify-content: center;
@@ -28,80 +27,75 @@ form {
     padding: 0 24px;
 }
 
-/* Containers para os campos */
 .veicle-element, .city-element, .description-element {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 25px; /* Aumentando o espaçamento entre os containers */
+    margin-bottom: 25px;
 }
 
 /* Estilo dos campos de entrada */
 .veicle-element .half-width,
 .city-element .half-width,
 .description-element .half-width {
-    width: 48%; /* Manter a largura para 2 campos lado a lado */
-    margin-bottom: 20px; /* Aumentando o espaçamento entre os campos */
+    width: 48%;
+    margin-bottom: 20px;
 }
 
 .veicle-element .full-width,
 .city-element .full-width,
 .description-element .full-width {
     width: 100%;
-    margin-bottom: 20px; /* Aumentando o espaçamento entre os campos */
+    margin-bottom: 20px;
 }
 
-/* Estilos para inputs, selects e textareas */
 input[type="text"],
 input[type="number"],
 select,
 textarea {
     width: 100%;
-    padding: 12px; /* Aumentando o padding para melhorar a usabilidade */
+    padding: 12px;
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 16px;
     box-sizing: border-box;
-    margin-bottom: 15px; /* Reduzindo o espaçamento vertical entre os campos */
+    margin-bottom: 15px;
 }
 
-/* Estilo para a textarea */
 textarea {
-    min-height: 120px; /* Aumentando a altura mínima */
-    max-height: 350px; /* Aumentando a altura máxima */
+    min-height: 120px;
+    max-height: 350px;
     resize: vertical;
     overflow-y: auto;
 }
 
-/* Estilo do checkbox */
 input[type="checkbox"] {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 3px 12px;
     background-color: #d9d9d9;
-    font-size: 22px; /* Aumentando o tamanho da fonte para tornar mais legível */
+    font-size: 22px;
     font-weight: bold;
     color: #280000;
     cursor: pointer;
     margin: 10px 5px 5px 0;
     transition: all 0.3s ease;
-    transform: scale(1.8); /* Aumentando o tamanho do checkbox */
+    transform: scale(1.8);
 }
 
-/* Ajuste nas labels */
 label {
     font-family: 'Inter', serif;
-    font-size: 18px; /* Aumentando o tamanho da fonte das labels */
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px; /* Aumentando o espaçamento inferior */
+    margin-bottom: 10px;
     display: block;
 }
 
 /* Estilo do botão */
 .button-sellscars {
-    padding: 14px 24px; /* Aumentando o padding */
+    padding: 14px 24px;
     background-color: #28a745;
     color: white;
     border: none;
@@ -112,41 +106,20 @@ label {
     width: 100%;
 }
 
-/* Efeito de hover no botão */
 .button-sellscars:hover {
     background-color: #218838;
 }
 
-/* Ajuste no botão de submit */
 .button-sellscars[type="submit"] {
     font-size: 20px;
 }
 
-/* Responsividade para dispositivos móveis */
-@media screen and (max-width: 600px) {
-    .veicle-element .half-width,
-    .city-element .half-width,
-    .description-element .half-width {
-        width: 100%; /* Tornando os campos com 100% de largura para melhor visualização em telas pequenas */
-        margin-bottom: 20px; /* Aumentando o espaçamento entre os campos */
-    }
-
-    .title-sellscars {
-        font-size: 1.5rem; /* Reduzindo o tamanho do título em dispositivos móveis */
-    }
-
-    .button-sellscars {
-        font-size: 18px; /* Ajustando o tamanho do botão */
-    }
-}
-
-/* Container flexível */
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     overflow-y: auto;
-    padding: 20px; /* Ajustando o padding */
+    padding: 20px;
     box-sizing: border-box;
 }

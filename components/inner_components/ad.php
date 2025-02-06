@@ -1,4 +1,7 @@
-<button class='container'>
+<!-- este código deixarei pois poderá ser utíl para reúso -->
+
+<!--
+<button class='ad-container'>
     <a href="pages/ad-view.php?ad_id=<?php echo $ad['id'] ?>">
     <div class='ad'>
         <img src="<?php echo $ad['foto']?>" class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
@@ -12,3 +15,4 @@
     </div>
     </a>
 </button>
+-->

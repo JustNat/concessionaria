@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_marca'])) {
     $modelos = getModelos($conn, $id_marca_selecionada);
 }
 
-// Processar o formulário de anúncio
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     try {
         $conn->beginTransaction();
@@ -70,29 +69,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
         $telefone = $_POST["telefone"];
         $foto = $_POST["foto"];
         $descricao = $_POST["descricao"];
-        $id_usuario = $_SESSION["user_id"];
+        $id_usuario = $_SESSION["user_id"] ?? null;
 
         $novo = ($km == 0) ? 1 : 0;
 
-        // Inserir veículo
-        $sql_veiculo = "INSERT INTO veiculo (id_modelo, placa, km, gnv, cor, novo) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt_veiculo = $conn->prepare($sql_veiculo);
-        $stmt_veiculo->execute([$id_modelo, $placa, $km, $gnv, $cor, $novo]);
-        $id_veiculo = $conn->lastInsertId();
+        // Verificar se o usuário está autenticado
+        if (!$id_usuario) {
+            echo json_encode(["success" => false, "message" => "Erro: Usuário não autenticado."]);
+            exit();
+        }
+
+        // Verificar se o modelo existe
+        $sql_check_modelo = "SELECT COUNT(*) FROM modelo WHERE id = ?";
+        $stmt_check_modelo = $conn->prepare($sql_check_modelo);
+        $stmt_check_modelo->execute([$id_modelo]);
+        if ($stmt_check_modelo->fetchColumn() == 0) {
+            echo json_encode(["success" => false, "message" => "Erro: Modelo não encontrado."]);
+            exit();
+        }
+
+        // Verificar se a cidade existe
+        $sql_check_cidade = "SELECT COUNT(*) FROM cidade WHERE id = ?";
+        $stmt_check_cidade = $conn->prepare($sql_check_cidade);
+        $stmt_check_cidade->execute([$id_cidade]);
+        if ($stmt_check_cidade->fetchColumn() == 0) {
+            echo json_encode(["success" => false, "message" => "Erro: Cidade não encontrada."]);
+            exit();
+        }
 
         // Inserir anúncio
-        $sql_anuncio = "INSERT INTO anuncio (id_veiculo, id_usuario, id_cidade, descricao, telefone, foto, preco, dt_criacao, aprovado) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), FALSE)";
+        $sql_anuncio = "INSERT INTO anuncio (id_usuario, id_cidade, descricao, preco, telefone, foto, dt_criacao, aprovado, placa, km, gnv, cor, novo, id_modelo) 
+                        VALUES (?, ?, ?, ?, ?, ?, NOW(), FALSE, ?, ?, ?, ?, ?, ?)";
         $stmt_anuncio = $conn->prepare($sql_anuncio);
-        $stmt_anuncio->execute([$id_veiculo, $id_usuario, $id_cidade, $descricao, $telefone, $foto, $preco]);
+        $stmt_anuncio->execute([$id_usuario, $id_cidade, $descricao, $preco, $telefone, $foto, $placa, $km, $gnv, $cor, $novo, $id_modelo]);
 
         $conn->commit();
-        $response = ["success" => true, "message" => "Anúncio cadastrado com sucesso!"];
+        echo json_encode(["success" => true, "message" => "Anúncio cadastrado com sucesso!"]);
     } catch (PDOException $e) {
         $conn->rollBack();
-        $response = ["success" => false, "message" => "Erro: " . $e->getMessage()];
+        echo json_encode(["success" => false, "message" => "Erro: " . $e->getMessage()]);
     }
-    echo json_encode($response);
     exit();
 }
 ?>

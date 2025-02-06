@@ -40,10 +40,15 @@ if (isset($_SESSION['tipo']) && !$_SESSION['tipo'] == 'adm') {
         <!-- Header -->
         <?php include('../components/header.php'); ?>
     </div>
+    <div class="top-buttons">
+        <div><button class="btn-cadastrar">Cadastrar Marcas</button></div>
+        <div><button class="btn-cadastrar">Cadastrar Modelos</button></div>
+    </div>
     <!-- Admin-content -->
     <div>
         <?php include('../components/admin-content.php'); ?>
     </div>
 </body>
+
 
 </html>
