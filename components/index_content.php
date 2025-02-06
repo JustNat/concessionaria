@@ -42,21 +42,27 @@ try {
         echo "<p>$errorMessage</p>";
     } else {
         foreach ($ads as $ad) {
-            echo "<button class='ad-container'>
-                <div class='ad'>
-                    <a href='pages/ad-view.php?ad_id=" . urlencode($ad['id']) . "'>
-                        <img src='" . htmlentities($ad['foto']) . "' class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
-                        <p class='car-model'>" . htmlspecialchars($ad['nome']) . "</p>
-                        <p class='car-brand'>" . htmlspecialchars($ad['id_marca']) . "</p>
-                        <div class='car-year-km'>
-                            <p>" . htmlspecialchars($ad['ano']) . "</p>
-                            <p>" . number_format($ad['km'], 0, ',', '.') . "</p>
-                        </div>
-                        <p class='price'>" . number_format($ad['preco'], 2, ',', '.') . "</p>
-                    </a>
-                </div>
-            </button>";
-        }        
+            echo "<button class='ad-container'
+                data-preco='" . htmlspecialchars($ad['preco']) . "'
+                data-km='" . htmlspecialchars($ad['km']) . "'
+                data-combustivel='" . htmlspecialchars($ad['combustivel']) . "'
+                data-cambio='" . htmlspecialchars($ad['cambio']) . "'
+                data-gnv='" . htmlspecialchars($ad['gnv']) . "'>
+                    <div class='ad'>
+                        <a href='pages/ad-view.php?ad_id=" . urlencode($ad['id']) . "'>
+                            <img src='" . htmlentities($ad['foto']) . "' class='ad-img' width='180px' height='140px' crossorigin='anonymous' />
+                            <p class='car-model'>" . htmlspecialchars($ad['nome']) . "</p>
+                            <p class='car-brand'>" . htmlspecialchars($ad['id_marca']) . "</p>
+                            <div class='car-year-km'>
+                                <p>" . htmlspecialchars($ad['ano']) . "</p>
+                                <p>" . number_format($ad['km'], 0, ',', '.') . "</p>
+                            </div>
+                            <p class='price'>" . number_format($ad['preco'], 2, ',', '.') . "</p>
+                        </a>
+                    </div>
+                </button>";
+        }
+            
     }
     ?>
     <script src='\concessionaria\js\filter.js'></script>
