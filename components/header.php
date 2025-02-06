@@ -12,7 +12,6 @@
     </div>
     <ul>
         <?php
-        // Verifica se o usuário é do tipo 'adm' antes de mostrar o painel administrativo
         if (isset($_SESSION['user_id']) && $_SESSION['tipo'] == 'adm') {
             echo '<li>
                     <button class="nav-element">

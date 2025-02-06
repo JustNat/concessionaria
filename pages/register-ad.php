@@ -17,7 +17,6 @@ $id_marca_selecionada = "";
 $cidades = [];
 $response = ["success" => false, "message" => ""];
 
-// Função para buscar cidades
 function getCidades($conn)
 {
     $sql = "SELECT id, nome FROM cidade";
@@ -26,7 +25,6 @@ function getCidades($conn)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Função para buscar marcas
 function getMarcas($conn)
 {
     $sql = "SELECT id FROM marca";
@@ -35,7 +33,6 @@ function getMarcas($conn)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Função para buscar modelos por marca
 function getModelos($conn, $id_marca)
 {
     $sql = "SELECT nome FROM modelo WHERE id_marca = :id_marca";
@@ -45,21 +42,18 @@ function getModelos($conn, $id_marca)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Obter cidades e marcas
 $cidades = getCidades($conn);
 $marcas = getMarcas($conn);
 
-// Se o usuário escolheu uma marca, buscar os modelos correspondentes
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_marca'])) {
     $id_marca_selecionada = $_POST['id_marca'];
     $modelos = getModelos($conn, $id_marca_selecionada);
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     try {
         $conn->beginTransaction();
 
-        $id_modelo = $_POST["id_modelo"];
+        $id_modelo = isset($_POST["id_modelo"]);
         $id_cidade = $_POST["id_cidade"];
         $placa = $_POST["placa"];
         $km = $_POST["km"];
@@ -73,13 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
 
         $novo = ($km == 0) ? 1 : 0;
 
-        // Verificar se o usuário está autenticado
         if (!$id_usuario) {
             echo json_encode(["success" => false, "message" => "Erro: Usuário não autenticado."]);
             exit();
         }
 
-        // Verificar se o modelo existe
         $sql_check_modelo = "SELECT COUNT(*) FROM modelo WHERE id = ?";
         $stmt_check_modelo = $conn->prepare($sql_check_modelo);
         $stmt_check_modelo->execute([$id_modelo]);
@@ -88,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
             exit();
         }
 
-        // Verificar se a cidade existe
         $sql_check_cidade = "SELECT COUNT(*) FROM cidade WHERE id = ?";
         $stmt_check_cidade = $conn->prepare($sql_check_cidade);
         $stmt_check_cidade->execute([$id_cidade]);
@@ -97,12 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
             exit();
         }
 
-        // Inserir anúncio
         $sql_anuncio = "INSERT INTO anuncio (id_usuario, id_cidade, descricao, preco, telefone, foto, dt_criacao, aprovado, placa, km, gnv, cor, novo, id_modelo) 
                         VALUES (?, ?, ?, ?, ?, ?, NOW(), FALSE, ?, ?, ?, ?, ?, ?)";
         $stmt_anuncio = $conn->prepare($sql_anuncio);
         $stmt_anuncio->execute([$id_usuario, $id_cidade, $descricao, $preco, $telefone, $foto, $placa, $km, $gnv, $cor, $novo, $id_modelo]);
 
+  
         $conn->commit();
         echo json_encode(["success" => true, "message" => "Anúncio cadastrado com sucesso!"]);
     } catch (PDOException $e) {

@@ -3,7 +3,6 @@
         <h2>Filtros</h2>
     </div>
 
-    <!-- Filtro de KM -->
     <div class="km-filter">
         <label for="km-range">Km: <span id="km-label">0</span> km</label>
         <input type="range" id="km-range-bar" name="km" min="0" max="100000" step="1000" value="<?php echo isset($_GET['km']) ? $_GET['km'] : '100000'; ?>">
@@ -13,7 +12,6 @@
         </div>
     </div>
 
-    <!-- Pesquisar preço mínimo e máximo -->
     <div class="search-bar">
         <label for="price-search">Preço</label>
         <div>
@@ -22,7 +20,6 @@
         </div>
     </div>
 
-    <!-- Filtro de Combustível -->
     <div class="fuel-filter">
         <label for="fuel-type">Combustível:</label>
         <select name="fuel" id="fuel-type">
@@ -36,7 +33,6 @@
         </select>
     </div>
 
-    <!-- Filtro de Câmbio -->
     <div class="fuel-filter">
         <label for="gear-type">Câmbio:</label>
         <select name="gear" id="gear-type">
@@ -47,13 +43,11 @@
         </select>
     </div>
 
-    <!-- Filtro de GNV -->
     <div class="gnv-filter">
         <label for="gnv">Possui GNV:</label>
         <input type="checkbox" name="gnv" id="gnv" value="1" <?php echo isset($_GET['gnv']) && $_GET['gnv'] == '1' ? 'checked' : '0'; ?>>
     </div>
 
-    <!-- Botão de Aplicar Filtros (Aqui está o botão) -->
     <div class="apply-filters">
         <button id="apply-filters" class="btn-apply-filters">Aplicar Filtros</button>
     </div>
