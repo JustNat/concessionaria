@@ -25,7 +25,7 @@
         if (isset($_SESSION['user_id'])) {
             echo '<li>
                     <button class="nav-element">
-                        <a href="pages/fav-ads.php">
+                        <a href="/concessionaria/pages/fav-ads.php">
                             <p class="text-element">Anúncios favoritados</p>
                         </a>
                     </button>

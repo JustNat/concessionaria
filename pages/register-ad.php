@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     try {
         $conn->beginTransaction();
 
-        $id_modelo = isset($_POST["id_modelo"]);
+        $id_modelo = $_POST["id_modelo"];
         $id_cidade = $_POST["id_cidade"];
         $placa = $_POST["placa"];
         $km = $_POST["km"];
@@ -141,9 +141,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
         <ul>
             <li><button class='nav-element'><a href="../index.php">
                         <p class="text-element">LANÇAMENTOS</p>
-                    </a></button></li>
-            <li><button class='nav-element'><a href="">
-                        <p class="text-element">COMPRAR</p>
                     </a></button></li>
             <li><button class='nav-element'><a <?php echo !isset($_SESSION['user_id']) ? "href='pages/login.php'" : "href='../includes/logout.php'"; ?>>
                         <p class="text-element"><?php echo !isset($_SESSION['user_id']) ? "ENTRAR" : "SAIR"; ?></p>

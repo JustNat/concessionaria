@@ -1,6 +1,6 @@
 <div>
     <button class='ad-container'>
-        <a href="pages/ad-view.php?ad_id=<?php echo htmlspecialchars($ad['id']); ?>" class="ad-link">
+        <a href="ad-view.php?ad_id=<?php echo htmlspecialchars($ad['id']); ?>" class="ad-link">
             <div class='ad'>
                 <img src="<?php echo htmlspecialchars($ad['foto']); ?>"
                     alt="Imagem do anúncio de <?php echo htmlspecialchars($ad['nome']); ?>" class='ad-img' width='180px'

@@ -227,7 +227,7 @@ try {
                     <a href='update-ad.php?ad_id=$adId'><p id='button-desc'>Editar anúncio</p></a>
                 </button>
                 <button class='actions'>
-                    <a href='delete-ad.php?ad_id=$adId'><p id='button-desc'>Excluir anúncio</p></a>
+                    <a href='../includes/delete-ad.php?ad_id=$adId'><p id='button-desc'>Excluir anúncio</p></a>
                 </button>
                 </div>
                 "
@@ -256,7 +256,6 @@ try {
         }
 
         ?>
-
         <p style="font-family: 'Raleway'; font-size: x-large; color: black; margin-top: 20px; margin-bottom: 5px;">
             Usuários que demonstraram interesse</p>
         <div id="interested-container">

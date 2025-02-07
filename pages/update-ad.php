@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
     try {
         $conn->beginTransaction();
 
-        $id_modelo = isset($_POST["id_modelo"]);
+        $id_modelo = $_POST["id_modelo"];
         $id_cidade = $_POST["id_cidade"];
         $placa = $_POST["placa"];
         $km = $_POST["km"];
@@ -229,13 +229,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_modelo'])) {
             <input type="hidden" name="id_marca" value="<?= htmlspecialchars($id_marca_selecionada); ?>">
             <label for="modelo">Selecione o Modelo:</label>
             <select name="id_modelo" id="modelo" required>
-                <option value="<?= htmlspecialchars($modelo['id']); ?>">Selecione um modelo</option>
-                <?php foreach ($modelos as $modelo): ?>
-                    <option value="<?= $modelo['id']; ?>">
-                        <?= $modelo['nome'] . " " . $modelo['versao'] . " " . $modelo['ano']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <option value="">Selecione um modelo</option>
+            <?php foreach ($modelos as $modelo): ?>
+                <option value="<?= htmlspecialchars($modelo['id']); ?>">
+                    <?= htmlspecialchars($modelo['nome'] . " " . $modelo['versao'] . " " . $modelo['ano']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
             <div class="veicle-element">
                 <div class="half-width">

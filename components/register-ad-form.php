@@ -15,10 +15,10 @@
         <input type="hidden" name="id_marca" value="<?= htmlspecialchars($id_marca_selecionada); ?>">
         <label for="modelo">Selecione o Modelo:</label>
         <select name="id_modelo" id="modelo" required>
-            <option value="<?= htmlspecialchars($modelo['id']); ?>">Selecione um modelo</option>
+            <option value="">Selecione um modelo</option>
             <?php foreach ($modelos as $modelo): ?>
-                <option value="<? $modelo['id']; ?>">
-                    <?= $modelo['nome'] . " " . $modelo['versao'] . " " . $modelo['ano']; ?>
+                <option value="<?= htmlspecialchars($modelo['id']); ?>">
+                    <?= htmlspecialchars($modelo['nome'] . " " . $modelo['versao'] . " " . $modelo['ano']); ?>
                 </option>
             <?php endforeach; ?>
         </select>

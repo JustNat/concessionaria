@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $errorMessage = '';
-include '/var/www/html/concessionaria/includes/db.php';
+include 'C:\xampp\htdocs\concessionaria\includes\db.php';
 include 'inner_components/ad.php';
 $ads = [];
 
@@ -55,7 +55,7 @@ try {
                             <p class='car-brand'>" . htmlspecialchars($ad['id_marca']) . "</p>
                             <div class='car-year-km'>
                                 <p>" . htmlspecialchars($ad['ano']) . "</p>
-                                <p>" . number_format($ad['km'], 0, ',', '.') . "</p>
+                                <p> km: " . number_format($ad['km'], 0, ',', '.') . "</p>
                             </div>
                             <p class='price'>" . number_format($ad['preco'], 2, ',', '.') . "</p>
                         </a>
